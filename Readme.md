@@ -82,7 +82,7 @@ var effect = new AudioEffect({ // Create new effect of type: highpass
 
 function PlaySound() {
   var player = new AudioPlayer({ // Create new AudioPlayer
-    source: source.source
+    source: source.buffer
   });
   
   player.play({
