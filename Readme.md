@@ -73,20 +73,20 @@ This way the sounds goes like this:
 **Example:**
 
 ```
-var source = new AudioSource('../path/to/sound.mp3');
+var source = new AudioSource('../path/to/sound.mp3'); // Create AudioSource
 
-var effect = new AudioEffect({
+var effect = new AudioEffect({ // Create new effect of type: highpass
   type: 'highpass',
   frequency: 3000
 });
 
 function PlaySound() {
-  var player = new AudioPlayer({
+  var player = new AudioPlayer({ // Create new AudioPlayer
     source: source.source
   });
   
   player.play({
-    destination: effect.source // Push the destination through the effect and to the speakers
+    destination: effect.source // Connect the AudioPlayer to the effect
   });
 }
 ```
@@ -104,7 +104,7 @@ parameter        |type       |required |description
 url              |*string*   |Yes      |Set the path to the soundfile that you want to store in the variable
 - - - -
 
-__AudioMultiSource([url]);__  
+**AudioMultiSource([url]);**  
 Decodes multiple sources and saves these in the AudioMultiSource.source.  
 
 parameter        |type       |required |description
@@ -112,7 +112,7 @@ parameter        |type       |required |description
 url              |*string*   |Yes      |Set multiple paths to the soundfile in a array that you want to store in the variable
 - - - -
 
-__AudioEffect({options});__  
+**AudioEffect({options});**  
 Creates an Effect node which manipulates the sound.  
 
 parameter        |type       |required |description
@@ -123,8 +123,8 @@ Q                |*integer*  |No       |Peaking frequency of filter
 destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination  
 - - - -
 
-__AudioGain({options});__  
-Creates a GainNode which can greates levels like volume or intesity.  
+**AudioGain({options});**  
+Creates a GainNode which can change levels like volume or intesity.  
 
 parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
@@ -132,7 +132,7 @@ gainValue        |*integer*  |No       |Set the gain.value. Default is 1
 destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination 
 - - - -
 
-__AudioPan({options});__  
+**AudioPan({options});**  
 Creates a StereoPannerNode which enables stereopanning.  
 
 parameter        |type       |required |description
@@ -141,7 +141,7 @@ pan              |*integer*  |No       |Set the pan value. -1 is left, 1 is righ
 destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination
 - - - -
 
-__AudioPlayer({options});__  
+**AudioPlayer({options});**  
 Creates an player object that connects to a source and plays a sound. Multiple properties can be tweaked.  
 
 parameter        |type       |required |description
@@ -154,7 +154,7 @@ loopEnd          |*integer*  |No       |If loop is true, end the loop at loopEnd
 onended          |*callback* |No       |Callback function that is fired when the Audio is finished
 name             |*string*   |No       |Give the object a name
 
-__AudioPlayer().play({options});__  
+**AudioPlayer().play({options});**  
 Connect and play the AudioPlayer sound.  
 
 parameter        |type       |required |description
@@ -163,7 +163,7 @@ delay            |*integer*  |No       |Delay set in milliseconds
 destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination 
 
 
-__AudioPlayer().stop({options});__  
+**AudioPlayer().stop({options});**  
 Stop and disconnect the AudioPlayer.  
 
 parameter        |type       |required |description
