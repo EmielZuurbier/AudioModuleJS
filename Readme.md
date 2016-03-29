@@ -48,9 +48,7 @@ function PlaySound() {
     onended: function () {
       console.log(this.name + ' has stopped playing');
     }
-  });
-  
-  player.play()
+  }).play();
 }
 ```
   
