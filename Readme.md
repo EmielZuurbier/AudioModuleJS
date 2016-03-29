@@ -95,7 +95,9 @@ function PlaySound() {
 
 ## All the object constructors
 
-__AudioSource(url);__  
+**AudioSource(url);**  
+Constructor takes a single parameter in which the path or url to the sound file (.mp3, .ogg, etc.) is given.
+The object decodes the audiofile to a usable audio source object.  
 
 parameter        |type       |required |description
 -----------------|-----------|---------|-----------------------------------------------------------
@@ -103,6 +105,7 @@ url              |*string*   |Yes      |Set the path to the soundfile that you w
 - - - -
 
 __AudioMultiSource([url]);__  
+Decodes multiple sources and saves these in the AudioMultiSource.source.  
 
 parameter        |type       |required |description
 -----------------|-----------|---------|---------------------------------------------------------------------------
@@ -110,6 +113,7 @@ url              |*string*   |Yes      |Set multiple paths to the soundfile in a
 - - - -
 
 __AudioEffect({options});__  
+Creates an Effect node which manipulates the sound.  
 
 parameter        |type       |required |description
 -----------------|-----------|---------|-----------------------------------------------------------------
@@ -120,6 +124,7 @@ destination      |*string*   |No       |Connect destination to other filter, pan
 - - - -
 
 __AudioGain({options});__  
+Creates a GainNode which can greates levels like volume or intesity.  
 
 parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
@@ -128,6 +133,7 @@ destination      |*string*   |No       |Connect destination to other filter, pan
 - - - -
 
 __AudioPan({options});__  
+Creates a StereoPannerNode which enables stereopanning.  
 
 parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
@@ -136,6 +142,7 @@ destination      |*string*   |No       |Connect destination to other filter, pan
 - - - -
 
 __AudioPlayer({options});__  
+Creates an player object that connects to a source and plays a sound. Multiple properties can be tweaked.  
 
 parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
@@ -148,6 +155,7 @@ onended          |*callback* |No       |Callback function that is fired when the
 name             |*string*   |No       |Give the object a name
 
 __AudioPlayer().play({options});__
+Connect and play the AudioPlayer sound.  
 
 parameter        |type       |required |description
 -----------------|-----------|---------|-----------------------------------------------------------------
@@ -156,6 +164,7 @@ destination      |*string*   |No       |Connect destination to other filter, pan
 
 
 __AudioPlayer().stop({options});__
+Stop and disconnect the AudioPlayer.  
 
 parameter        |type       |required |description
 -----------------|-----------|---------|-----------------------------------------------------------------
