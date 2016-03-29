@@ -110,7 +110,7 @@ __AudioPan({options});__
 
 parameter        |type       |description
 -----------------|-----------|-----------------------------------------------------------------------
-pan              |*integer*  |Set the pan.value. Default is 0
+pan              |*integer*  |Set the pan value. -1 is left, 1 is right. Default is 0
 destination      |*string*   |Connect destination to other filter, panner or AudioContext.destination
 - - - -
 
