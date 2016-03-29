@@ -66,7 +66,7 @@ var effect = new AudioEffect({
 ```
 
 **Note:**  
-When you initiate AudioPlayer.play method, you have to give it a 'destination' parameter.  
+To connect the AudioPlayer with the AudioFilter, give the AudioPlayer.play method a 'destination' property which links to the AudioFilter.source. The example below shows how to connect the two.  
 This way the sounds goes like this:  
 *AudioPlayer -> effect -> AudioContext().destination*  
   
