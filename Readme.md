@@ -70,7 +70,7 @@ When you initiate AudioPlayer.play method, you have to give it a 'destination' p
 This way the sounds goes like this:  
 *AudioPlayer -> effect -> AudioContext().destination*  
   
-*Example*
+**Example**
 
 ```
 var source = new AudioSource('../path/to/sound.mp3');
