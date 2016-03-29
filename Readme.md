@@ -30,7 +30,7 @@ The audiosource is stored in the `AudioSource.source` property.
 ### Step 2 - Create a player  
 The AudioContext works in a way that a BufferSource has to be created everytime a sound is played. You can only start and stop a BufferSource once.
 This is why we build the player in a function so that is created everytime you play the sound.  
-The player is built with the `AudioPlayer` constructor which takes multiple properties in an object parameter.  
+The player is built with the `AudioPlayer()` constructor which takes multiple properties in an object parameter.  
 It could look like this. 
 **Only the `source: ...` property is mandatory. The AudioPlayer cannot run without a source.**
 ```
@@ -58,12 +58,19 @@ function PlaySound() {
   
 ### Step 3 (optional) - Create effects and panner  
 With the AudioContext comes great possibilities. We can create effects that we can customize and manipulate and the sound. Pretty cool huh?
-We'll do this by creating a new AudioEffect object like so:  
+We'll do this by creating a new AudioEffect object like so: 
+```
+var effect = new AudioEffect({
+  type: 'bandpass'
+});
+```
 
 **Note:**  
 When you initiate AudioPlayer.play method, you have to give it a 'destination' parameter.  
 This way the sounds goes like this:  
 *AudioPlayer -> effect -> AudioContext().destination*  
+  
+*Example*
 
 ```
 var source = new AudioSource('../path/to/sound.mp3');
