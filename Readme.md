@@ -64,7 +64,7 @@ function PlaySound() {
   });
   
   player.play({
-    destination: effect // Push the destination through the effect and to the speakers
+    destination: effect.source // Push the destination through the effect and to the speakers
   });
 }
 ```
