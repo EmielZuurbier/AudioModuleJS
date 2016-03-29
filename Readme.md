@@ -20,10 +20,11 @@ First we use the `AudioSource()` constructor, which takes a single parameter, cr
 ```var source = new AudioSource('../path/to/sound.mp3');```  
 
 By doing this we've created an AudioSource that we can use on our player.  
-We can also create multiple sources with the `AudioMultiSource` constructor.  
+We can also create multiple sources with the `AudioMultiSource()` constructor.  
 This constructor takes an array with multiple strings as input:
 ```var source = new AudioMultiSource(['../path/to/sound1.mp3', '../path/to/sound2.mp3', '../path/to/sound3.mp3'])```
-
+  
+The audiosource is stored in the `AudioSource.source` property.
   
   
 ### Step 2 - Create a player  
