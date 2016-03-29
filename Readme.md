@@ -58,7 +58,7 @@ var effect = new AudioEffect({
 });
 
 function PlaySound() {
-  
+  var player = new AudioPlayer({
     ...
   
   });
