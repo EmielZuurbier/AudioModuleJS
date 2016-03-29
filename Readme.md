@@ -1,5 +1,5 @@
 # AudioModuleJS
-Javascript module for Web Audio API. It is designed to make it easier to create and play sounds by create Audio objects.
+Javascript module for Web Audio API. It is designed to make it easier to create and play sounds by creating Audio objects.
 
 
 ## How does it work?
