@@ -154,7 +154,7 @@ loopEnd          |*integer*  |No       |If loop is true, end the loop at loopEnd
 onended          |*callback* |No       |Callback function that is fired when the Audio is finished
 name             |*string*   |No       |Give the object a name
 
-__AudioPlayer().play({options});__
+__AudioPlayer().play({options});__  
 Connect and play the AudioPlayer sound.  
 
 parameter        |type       |required |description
@@ -163,7 +163,7 @@ delay            |*integer*  |No       |Delay set in milliseconds
 destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination 
 
 
-__AudioPlayer().stop({options});__
+__AudioPlayer().stop({options});__  
 Stop and disconnect the AudioPlayer.  
 
 parameter        |type       |required |description
