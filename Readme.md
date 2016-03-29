@@ -1,4 +1,4 @@
-# AudioModuleJS
+# AudioModuleJS - V0.1
 Javascript module for Web Audio API. It is designed to make it easier to create and play sounds by creating Audio objects.
 
 
@@ -76,67 +76,67 @@ function PlaySound() {
 
 __AudioSource(url);__  
 
-parameter        |type       |description
------------------|-----------|--------------------------------------------------------------------
-url              |*string*   |Set the path to the soundfile that you want to store in the variable
+parameter        |type       |required |description
+-----------------|-----------|---------|-----------------------------------------------------------
+url              |*string*   |Yes      |Set the path to the soundfile that you want to store in the variable
 - - - -
 
 __AudioMultiSource([url]);__  
 
-parameter        |type       |description
------------------|-----------|-------------------------------------------------------------------------------------
-url              |*string*   |Set multiple paths to the soundfile in a array that you want to store in the variable
+parameter        |type       |required |description
+-----------------|-----------|---------|---------------------------------------------------------------------------
+url              |*string*   |Yes      |Set multiple paths to the soundfile in a array that you want to store in the variable
 - - - -
 
 __AudioEffect({options});__  
 
-parameter        |type       |description
------------------|-----------|---------------------------------------------------------------------------
-type             |*string*   |Types of different effects. Options are: *lowpass, highpass, bandpass, lowshelf, highshelf, peaking, notch or allpass*
-frequency        |*integer*  |Frequency of the filter
-Q                |*integer*  |Peaking frequency of filter
-destination      |*string*   |Connect destination to other filter, panner or AudioContext.destination  
+parameter        |type       |required |description
+-----------------|-----------|---------|-----------------------------------------------------------------
+type             |*string*   |Yes      |Types of different effects. Options are: *lowpass, highpass, bandpass, lowshelf, highshelf, peaking, notch or allpass*
+frequency        |*integer*  |No       |Frequency of the filter
+Q                |*integer*  |No       |Peaking frequency of filter
+destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination  
 - - - -
 
 __AudioGain({options});__  
 
-parameter        |type       |description
------------------|-----------|-----------------------------------------------------------------------
-gainValue        |*integer*  |Set the gain.value. Default is 1
-destination      |*string*   |Connect destination to other filter, panner or AudioContext.destination 
+parameter        |type       |required |description
+-----------------|-----------|---------|-------------------------------------------------------------
+gainValue        |*integer*  |No       |Set the gain.value. Default is 1
+destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination 
 - - - -
 
 __AudioPan({options});__  
 
-parameter        |type       |description
------------------|-----------|-----------------------------------------------------------------------
-pan              |*integer*  |Set the pan value. -1 is left, 1 is right. Default is 0
-destination      |*string*   |Connect destination to other filter, panner or AudioContext.destination
+parameter        |type       |required |description
+-----------------|-----------|---------|-------------------------------------------------------------
+pan              |*integer*  |No       |Set the pan value. -1 is left, 1 is right. Default is 0
+destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination
 - - - -
 
 __AudioPlayer({options});__  
 
-parameter        |type       |description
------------------|-----------|-----------------------------------------------------------------------
-source           |*string*   |Connect the source to the created AudioSource.source
-detune           |*value*    |Set a value for detuning the source. Default is 0
-loop             |*bool*     |Set loop true or false
-loopStart        |*integer*  |If loop is true, start the loop from loopStart
-loopEnd          |*integer*  |If loop is true, end the loop at loopEnd
-onended          |*callback* |Callback function that is fired when the Audio is finished
-name             |*string*   |Give the object a name
+parameter        |type       |required |description
+-----------------|-----------|---------|-------------------------------------------------------------
+source           |*string*   |Yes      |Connect the source to the created AudioSource.source
+detune           |*value*    |No       |Set a value for detuning the source. Default is 0
+loop             |*bool*     |No       |Set loop true or false
+loopStart        |*integer*  |No       |If loop is true, start the loop from loopStart
+loopEnd          |*integer*  |No       |If loop is true, end the loop at loopEnd
+onended          |*callback* |No       |Callback function that is fired when the Audio is finished
+name             |*string*   |No       |Give the object a name
 
 __AudioPlayer().play({options});__
 
-parameter        |type       |description
------------------|-----------|---------------------------------------------------------------------------
-delay            |*integer*  |Delay set in milliseconds
-destination      |*string*   |Connect destination to other filter, panner or AudioContext.destination 
+parameter        |type       |required |description
+-----------------|-----------|---------|-----------------------------------------------------------------
+delay            |*integer*  |No       |Delay set in milliseconds
+destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination 
 
 
 __AudioPlayer().stop({options});__
 
-parameter        |type       |description
------------------|-----------|---------------------------------------------------------------------------
-delay            |*integer*  |Delay set in milliseconds
+parameter        |type       |required |description
+-----------------|-----------|---------|-----------------------------------------------------------------
+delay            |*integer*  |No       |Delay set in milliseconds
 
