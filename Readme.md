@@ -1,24 +1,37 @@
 # AudioModuleJS - V0.1
-Javascript module for Web Audio API. It is designed to make it easier to create and play sounds by creating Audio objects.
+Javascript module for Web Audio API.  
+It is designed to make it easier to create sound in the browser.
 
 
 ## How does it work?
 This module is built for the AudioContext() API. It has built in object constructors in which you can create sources, effects, panners, audioplayers and controls.  
-Download the script and load it in your site.
-
+Download the script and link the script in your site.
+```
+<script src="AudioModule.js"></script>
+<script src="YourScript.js"></script>
+```
+  
+  
 ### Step 1 - Create a source
 Before a audio file can be played, it first has to be loaded into the script with a HTTPRequest and then decoded with the AudioContext().decodeAudioData() method.
 This has been built in so that the process is super easy.  
   
-First we create a source like so:  
+First we use the `AudioSource()` constructor, which takes a single parameter, create a source like so:  
 ```var source = new AudioSource('../path/to/sound.mp3');```  
 
 By doing this we've created an AudioSource that we can use on our player.  
+We can also create multiple sources with the `AudioMultiSource` constructor.  
+This constructor takes an array with multiple strings as input:
+```var source = new AudioMultiSource(['../path/to/sound1.mp3', '../path/to/sound2.mp3', '../path/to/sound3.mp3'])```
 
+  
+  
 ### Step 2 - Create a player  
 The AudioContext works in a way that a BufferSource has to be created everytime a sound is played. You can only start and stop a BufferSource once.
-This is way we build the player in a function. It could look like this.  
-**Only the `source: ...` options is mandatory. The AudioPlayer cannot run without a source.**
+This is why we build the player in a function so that is created everytime you play the sound.  
+The player is built with the `AudioPlayer` constructor which takes multiple properties in an object parameter.  
+It could look like this. 
+**Only the `source: ...` property is mandatory. The AudioPlayer cannot run without a source.**
 ```
 var source = new AudioSource('../path/to/sound.mp3');
 
@@ -39,7 +52,9 @@ function PlaySound() {
   player.play()
 }
 ```
-
+  
+  
+  
 ### Step 3 (optional) - Create effects and panner  
 With the AudioContext comes great possibilities. We can create effects that we can customize and manipulate and the sound. Pretty cool huh?
 We'll do this by creating a new AudioEffect object like so:  
@@ -68,11 +83,10 @@ function PlaySound() {
   });
 }
 ```
+  
+  
 
-
-
-
-### All the object constructors
+## All the object constructors
 
 __AudioSource(url);__  
 
