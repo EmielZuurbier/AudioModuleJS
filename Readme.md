@@ -1,4 +1,4 @@
-# AudioModuleJS - V0.1
+# AudioModuleJS - V0.2
 Javascript module for Web Audio API.  
 It is designed to make it easier to create sound in the browser.
 
@@ -100,6 +100,7 @@ The object decodes the audiofile to a usable audio source object.
 parameter        |type       |required |description
 -----------------|-----------|---------|-----------------------------------------------------------
 url              |*string*   |Yes      |Set the path to the soundfile that you want to store in the variable
+callback         |*function* |No       |Callback function for when loading is finished
 - - - -
 
 **AudioMultiSource([url]);**  
@@ -108,6 +109,8 @@ Decodes multiple sources and saves these in the AudioMultiSource.source.
 parameter        |type       |required |description
 -----------------|-----------|---------|---------------------------------------------------------------------------
 url              |*string*   |Yes      |Set multiple paths to the soundfile in a array that you want to store in the variable
+callback         |*function* |No       |Callback function for when loading is finished  
+callLast         |*bool*     |No       |true: The callback is fired after the last url is loaded. false: The callback is fired after every loaded url. Default = true
 - - - -
 
 **AudioEffect({options});**  
@@ -115,10 +118,10 @@ Creates an Effect node which manipulates the sound.
 
 parameter        |type       |required |description
 -----------------|-----------|---------|-----------------------------------------------------------------
-type             |*string*   |Yes      |Types of different effects. Options are: *lowpass, highpass, bandpass, lowshelf, highshelf, peaking, notch or allpass*
+type             |*string*   |Yes      |Types of different effects. Options are: *"lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch" or "allpass"*
 frequency        |*integer*  |No       |Frequency of the filter
 Q                |*integer*  |No       |Peaking frequency of filter
-destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination  
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination   
 - - - -
 
 **AudioGain({options});**  
@@ -127,7 +130,7 @@ Creates a GainNode which can change levels like volume or intesity.
 parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
 gainValue        |*integer*  |No       |Set the gain.value. Default is 1
-destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination 
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination  
 - - - -
 
 **AudioPan({options});**  
@@ -136,7 +139,28 @@ Creates a StereoPannerNode which enables stereopanning.
 parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
 pan              |*integer*  |No       |Set the pan value. -1 is left, 1 is right. Default is 0
-destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination 
+- - - -
+
+**AudioDistortion({options});**  
+Creates a DistortionNode for distortion  
+
+parameter        |type       |required |description
+-----------------|-----------|---------|-------------------------------------------------------------
+curve            |*integer*  |No       |Sets the distortion curve
+oversample       |*string*   |No       |Distortion oversampling. Options are: *"none", "2x", "4x". Default = "none"*
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination 
+- - - -
+
+**AudioConvolver({options});**  
+Creates a Convolvernode which makes a delay.  
+Build a new source with an impulse response sound file and link the AudioPlayer to the Convolver.  
+
+parameter        |type       |required |description
+-----------------|-----------|---------|-------------------------------------------------------------
+normalize        |*bool*     |No       |true: The convolver amplitude is leveled with the AudioPlayer. false: The convolver amplitude is not leveled with the AudioPlayer. Default = true
+source           |*string*   |Yes      |Connect the source to the created AudioSource.source
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination 
 - - - -
 
 **AudioPlayer({options});**  
@@ -158,7 +182,7 @@ Connect and play the AudioPlayer sound.
 parameter        |type       |required |description
 -----------------|-----------|---------|-----------------------------------------------------------------
 delay            |*integer*  |No       |Delay set in milliseconds
-destination      |*string*   |No       |Connect destination to other filter, panner or AudioContext.destination 
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination 
 
 
 **AudioPlayer().stop({options});**  
@@ -167,4 +191,30 @@ Stop and disconnect the AudioPlayer.
 parameter        |type       |required |description
 -----------------|-----------|---------|-----------------------------------------------------------------
 delay            |*integer*  |No       |Delay set in milliseconds
+- - - -
 
+**AudioOsc({options})**  
+Creates and oscillator with a given frequency.  
+
+parameter        |type       |required |description
+-----------------|-----------|---------|-----------------------------------------------------------------
+type             |*string*   |No       |Types of different oscillator waves. Options are: *"sine", "square", "sawtooth" and "triangle"*
+frequency        |*integer*  |No       |Frequency of the filter
+detune           |*integer*  |No       |Detunes the oscillator with a given value. Default = 0  
+
+
+**AudioOsc().play({options})**  
+Play the oscillator with or without delay value  
+
+parameter        |type       |required |description
+-----------------|-----------|---------|-----------------------------------------------------------------
+delay            |*integer*  |No       |Delay set in milliseconds
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination  
+
+
+**AudioOsc().stop({options});**  
+Stop and disconnect the AudioPlayer.  
+
+parameter        |type       |required |description
+-----------------|-----------|---------|-----------------------------------------------------------------
+delay            |*integer*  |No       |Delay set in milliseconds
