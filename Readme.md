@@ -121,7 +121,7 @@ parameter        |type       |required |description
 type             |*string*   |Yes      |Types of different effects. Options are: *"lowpass", "highpass", "bandpass", "lowshelf", "highshelf", "peaking", "notch" or "allpass"*
 frequency        |*integer*  |No       |Frequency of the filter
 Q                |*integer*  |No       |Peaking frequency of filter
-destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination   
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext().destination   
 - - - -
 
 **AudioGain({options});**  
@@ -130,7 +130,7 @@ Creates a GainNode which can change levels like volume or intesity.
 parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
 gainValue        |*integer*  |No       |Set the gain.value. Default is 1
-destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination  
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext().destination  
 - - - -
 
 **AudioPan({options});**  
@@ -139,7 +139,7 @@ Creates a StereoPannerNode which enables stereopanning.
 parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
 pan              |*integer*  |No       |Set the pan value. -1 is left, 1 is right. Default is 0
-destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination 
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext().destination 
 - - - -
 
 **AudioDistortion({options});**  
@@ -149,7 +149,7 @@ parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
 curve            |*integer*  |No       |Sets the distortion curve
 oversample       |*string*   |No       |Distortion oversampling. Options are: *"none", "2x", "4x". Default = "none"*
-destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination 
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext().destination 
 - - - -
 
 **AudioConvolver({options});**  
@@ -160,7 +160,7 @@ parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
 normalize        |*bool*     |No       |true: The convolver amplitude is leveled with the AudioPlayer. false: The convolver amplitude is not leveled with the AudioPlayer. Default = true
 source           |*string*   |Yes      |Connect the source to the created AudioSource.source
-destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination 
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext().destination 
 - - - -
 
 **AudioPlayer({options});**  
@@ -182,7 +182,7 @@ Connect and play the AudioPlayer sound.
 parameter        |type       |required |description
 -----------------|-----------|---------|-----------------------------------------------------------------
 delay            |*integer*  |No       |Delay set in milliseconds
-destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination 
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext().destination 
 
 
 **AudioPlayer().stop({options});**  
@@ -209,7 +209,7 @@ Play the oscillator with or without delay value
 parameter        |type       |required |description
 -----------------|-----------|---------|-----------------------------------------------------------------
 delay            |*integer*  |No       |Delay set in milliseconds
-destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext.destination  
+destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext().destination  
 
 
 **AudioOsc().stop({options});**  
