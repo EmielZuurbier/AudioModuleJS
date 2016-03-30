@@ -146,7 +146,7 @@ function AudioEffect(options) {
                 console.info('AudioEffect destination is not set. Default is set to AudioContext().destination.');
                 this.source.connect(ctx.destination);
             } else {
-                this.source.connect(options.destination);
+                this.source.connect(options.destination.source);
             }
         }
     }
@@ -200,7 +200,7 @@ function AudioDistortion(options) {
             this.source.connect(ctx.destination);
             console.info('AudioDistortion destination is not set. Default is set to AudioContext().destination.');
         } else {
-            this.source.connect(options.destination);
+            this.source.connect(options.destination.source);
         }
     }
 }
@@ -231,7 +231,7 @@ function AudioGain(options) {
             this.source.connect(ctx.destination);
             console.info('AudioGain destination is not set. Default is set to AudioContext().destination.');
         } else {
-            this.source.connect(options.destination);
+            this.source.connect(options.destination.source);
         }
     }
 }
@@ -260,7 +260,7 @@ function AudioPan(options) {
             this.source.connect(ctx.destination);
             console.info('AudioPan destination is not set. Default is set to AudioContext().destination.');
         } else {
-            this.source.connect(options.destination);
+            this.source.connect(options.destination.source);
         }
     }
 }
@@ -279,7 +279,7 @@ function AudioPlayer(options) {
         if (chk(options.source)) {
             console.error('AudioPlayer is missing source. Please create a source with the AudioSource constructor en set the AudioPlayer source to the created source.');
         } else {
-            this.source.buffer = options.source;
+            this.source.buffer = options.source.buffer;
         }
 
         // SET DETUNE
@@ -350,7 +350,7 @@ AudioPlayer.prototype.play = function (options) {
         } else if (options.destination === 'destination') {
             this.source.connect(ctx.destination);
         } else {
-            this.source.connect(options.destination);
+            this.source.connect(options.destination.source);
         }
 
         // SET DELAY - DEFAULT = 0
@@ -439,7 +439,7 @@ AudioOsc.prototype.play = function (options) {
         if (chk(options.destination)) {
             this.source.connect(ctx.destination);
         } else {
-            this.source.connect(options.destination);
+            this.source.connect(options.destination.source);
         }
         
         if (chk(options.delay, true)) {
@@ -494,13 +494,13 @@ function AudioConvolver(options) {
         if (chk(options.source)) {
             console.error('AudioConvolver is missing source. Please create a source with the AudioSource constructor en set the AudioPlayer source to the created source.');
         } else {
-            this.source.buffer = options.source;
+            this.source.buffer = options.source.buffer;
         }
         
         if (chk(options.destination)) {
             this.source.connect(ctx.destination);
         } else {
-            this.source.connect(options.destination);
+            this.source.connect(options.destination.source);
         }
     }
 }
