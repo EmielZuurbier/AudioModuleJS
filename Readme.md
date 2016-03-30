@@ -16,12 +16,14 @@ Download the script and link the script in your site.
 Before a audio file can be played, it first has to be loaded into the script with a HTTPRequest and then decoded with the AudioContext().decodeAudioData() method.
 This has been built in so that the process is super easy.  
   
-First we use the `AudioSource()` constructor, which takes a single parameter, create a source like so:  
+First we use the `AudioSource()` constructor, which takes two parameter (url, callback), create a source like so:  
 ```var source = new AudioSource('../path/to/sound.mp3');```  
 
 By doing this we've created an AudioSource that we can use on our player.  
+**Note:** the callback parameter is optional and fires when the loading is done.
+
 We can also create multiple sources with the `AudioMultiSource()` constructor.  
-This constructor takes an array with multiple strings as input:  
+This constructor takes an array with multiple strings, a callback, and a callLast parameter as input:  
 ```var source = new AudioMultiSource(['../path/to/sound1.mp3', '../path/to/sound2.mp3', '../path/to/sound3.mp3'])```
   
 The audiosource is stored in the `AudioSource.source` property.
@@ -34,12 +36,12 @@ The player is built with the `AudioPlayer()` constructor which takes multiple pr
 It could look like this. 
 **Only the `source: ...` property is mandatory. The AudioPlayer cannot run without a source.**
 ```
-var source = new AudioSource('../path/to/sound.mp3');
+var sound = new AudioSource('../path/to/sound.mp3');
 
 function PlaySound() {
   var player = new AudioPlayer({
     name: 'note',
-    source: source.buffer,
+    source: sound,
     detune: 100,
     loop: true,
     loopStart: 7000,
@@ -64,14 +66,14 @@ var effect = new AudioEffect({
 ```
 
 **Note:**  
-To connect the AudioPlayer with the AudioFilter, give the AudioPlayer.play method a 'destination' property which links to the AudioFilter.source. The example below shows how to connect the two.  
+To connect the AudioPlayer with the AudioFilter, give the AudioPlayer.play method a 'destination' property which links to the AudioFilter. The example below shows how to connect the two.  
 This way the sounds goes like this:  
-*AudioPlayer -> effect -> AudioContext().destination*  
+*AudioPlayer -> AudioEffect -> AudioContext().destination*  
   
 **Example:**
 
 ```
-var source = new AudioSource('../path/to/sound.mp3'); // Create AudioSource
+var sound = new AudioSource('../path/to/sound.mp3'); // Create AudioSource
 
 var effect = new AudioEffect({ // Create new effect of type: highpass
   type: 'highpass',
@@ -80,21 +82,21 @@ var effect = new AudioEffect({ // Create new effect of type: highpass
 
 function PlaySound() {
   var player = new AudioPlayer({ // Create new AudioPlayer
-    source: source.buffer
+    source: sound
   });
   
   player.play({
-    destination: effect.source // Connect the AudioPlayer to the effect
+    destination: effect// Connect the AudioPlayer to the effect
   });
 }
 ```
   
   
 
-## All the object constructors
+## Full overview
 
 **AudioSource(url, callback);**  
-Constructor takes a single parameter in which the path or url to the sound file (.mp3, .ogg, etc.) is given.
+Constructor takes two parameters in which the path or url to the sound file (.mp3, .ogg, etc.) and a callback is given.
 The object decodes the audiofile to a usable audio source object.  
 
 parameter        |type       |required |description
@@ -104,13 +106,13 @@ callback         |*function* |No       |Callback function for when loading is fi
 - - - -
 
 **AudioMultiSource([url], callback, callLast);**  
-Decodes multiple sources and saves these in the AudioMultiSource.source.  
+Decodes multiple sources and saves these in the AudioMultiSource.source. The AudioMultiSource has 3 parameters. The *url* parameter takes an array of strings that lead to the selected soundfiles. *callback* fires a callback function after every sound has been fetched and loaded. *callLast* is a boolean that indicates if the callback has to be fired with every load, or only the last load.  
 
 parameter        |type       |required |description
 -----------------|-----------|---------|---------------------------------------------------------------------------
 url              |*string*   |Yes      |Set multiple paths to the soundfile in a array that you want to store in the variable
 callback         |*function* |No       |Callback function for when loading is finished  
-callLast         |*bool*     |No       |true: The callback is fired after the last url is loaded. false: The callback is fired after every loaded url. Default = true
+callLast         |*bool*     |No       |true: The callback is fired after the last url is loaded. false: The callback is fired after every loaded url. Default = false
 - - - -
 
 **AudioEffect({options});**  
