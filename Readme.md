@@ -93,7 +93,7 @@ function PlaySound() {
 
 ## All the object constructors
 
-**AudioSource(url);**  
+**AudioSource(url, callback);**  
 Constructor takes a single parameter in which the path or url to the sound file (.mp3, .ogg, etc.) is given.
 The object decodes the audiofile to a usable audio source object.  
 
@@ -103,7 +103,7 @@ url              |*string*   |Yes      |Set the path to the soundfile that you w
 callback         |*function* |No       |Callback function for when loading is finished
 - - - -
 
-**AudioMultiSource([url]);**  
+**AudioMultiSource([url], callback, callLast);**  
 Decodes multiple sources and saves these in the AudioMultiSource.source.  
 
 parameter        |type       |required |description
