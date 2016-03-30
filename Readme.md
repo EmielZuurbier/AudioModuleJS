@@ -193,7 +193,7 @@ parameter        |type       |required |description
 delay            |*integer*  |No       |Delay set in milliseconds
 - - - -
 
-**AudioOsc({options})**  
+**AudioOsc({options});**  
 Creates and oscillator with a given frequency.  
 
 parameter        |type       |required |description
@@ -203,7 +203,7 @@ frequency        |*integer*  |No       |Frequency of the filter
 detune           |*integer*  |No       |Detunes the oscillator with a given value. Default = 0  
 
 
-**AudioOsc().play({options})**  
+**AudioOsc().play({options});**  
 Play the oscillator with or without delay value  
 
 parameter        |type       |required |description
