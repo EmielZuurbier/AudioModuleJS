@@ -277,9 +277,9 @@ function AudioPlayer(options) {
     } else {
         // SET SOURCE
         if (chk(options.source)) {
-            console.error('AudioPlayer is missing source. Please create a source with the AudioSource constructor en set the AudioPlayer source to the created source.');
+            console.error('AudioPlayer is missing source. Please create a source with the AudioSource constructor en set the AudioPlayer source to the created AudioSource.buffer.');
         } else {
-            this.source.buffer = options.source.buffer;
+            this.source.buffer = options.source;
         }
 
         // SET DETUNE
@@ -494,7 +494,7 @@ function AudioConvolver(options) {
         if (chk(options.source)) {
             console.error('AudioConvolver is missing source. Please create a source with the AudioSource constructor en set the AudioPlayer source to the created source.');
         } else {
-            this.source.buffer = options.source.buffer;
+            this.source.buffer = options.source;
         }
         
         if (chk(options.destination)) {
