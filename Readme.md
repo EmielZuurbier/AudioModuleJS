@@ -20,14 +20,13 @@ First we use the `AudioSource()` constructor, which takes two parameter (url, ca
 ```var source = new AudioSource('../path/to/sound.mp3');```  
 
 By doing this we've created an AudioSource that we can use on our player.  
-The soundfile has been decoded and stored in `AudioSource.buffer`.  
+**The soundfile has been decoded and stored in `AudioSource.buffer`.**  
+  
 **Note:** the callback parameter is optional and fires when the loading is done.
 
 We can also create multiple sources with the `AudioMultiSource()` constructor.  
 This constructor takes an array with multiple strings, a callback, and a callLast parameter as input:  
 ```var source = new AudioMultiSource(['../path/to/sound1.mp3', '../path/to/sound2.mp3', '../path/to/sound3.mp3'])```
-  
-The audiosource is stored in the `AudioSource.source` property.
   
   
 ### Step 2 - Create a player  
