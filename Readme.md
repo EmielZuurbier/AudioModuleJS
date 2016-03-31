@@ -20,6 +20,7 @@ First we use the `AudioSource()` constructor, which takes two parameter (url, ca
 ```var source = new AudioSource('../path/to/sound.mp3');```  
 
 By doing this we've created an AudioSource that we can use on our player.  
+The soundfile has been decoded and stored in `AudioSource.buffer`.  
 **Note:** the callback parameter is optional and fires when the loading is done.
 
 We can also create multiple sources with the `AudioMultiSource()` constructor.  
@@ -33,15 +34,16 @@ The audiosource is stored in the `AudioSource.source` property.
 The AudioContext works in a way that a BufferSource has to be created everytime a sound is played. You can only start and stop a BufferSource once.
 This is why we build the player in a function so that is created everytime you play the sound.  
 The player is built with the `AudioPlayer()` constructor which takes multiple properties in an object parameter.  
-It could look like this. 
-**Only the `source: ...` property is mandatory. The AudioPlayer cannot run without a source.**
+It could look like this:  
+
+**Note: Only the `source: ...` property is mandatory. The AudioPlayer cannot run without a source.**
 ```
 var sound = new AudioSource('../path/to/sound.mp3');
 
 function PlaySound() {
   var player = new AudioPlayer({
     name: 'note',
-    source: sound,
+    source: sound.buffer,
     detune: 100,
     loop: true,
     loopStart: 7000,
@@ -65,8 +67,8 @@ var effect = new AudioEffect({
 });
 ```
 
-**Note:**  
-To connect the AudioPlayer with the AudioFilter, give the AudioPlayer.play method a 'destination' property which links to the AudioFilter. The example below shows how to connect the two.  
+**Note:** To connect the AudioPlayer with the AudioFilter, give the AudioPlayer.play method a 'destination' property which links to the AudioFilter. The example below shows how to connect the two.  
+  
 This way the sounds goes like this:  
 *AudioPlayer -> AudioEffect -> AudioContext().destination*  
   
@@ -82,7 +84,7 @@ var effect = new AudioEffect({ // Create new effect of type: highpass
 
 function PlaySound() {
   var player = new AudioPlayer({ // Create new AudioPlayer
-    source: sound
+    source: sound.buffer
   });
   
   player.play({
@@ -91,7 +93,32 @@ function PlaySound() {
 }
 ```
   
+### Step 4 (optional) - Create a Convolver  
+So a convolver is basically an equasion that takes two soundswaves and creates a new one out of the average. This way we can reshape the sound and add a reverb for example.  
+The `AudioConvolver()` constructor does this for you. Create a new `AudioConvoler` with a source property in an object as parameter and link your `AudioPlayer()` to the `AudioConvolver()`.  
   
+The example below shows how you can do that. We've also used the `AudioMultiSource()`' callback to create and play them as soon as the sounds are loaded. Be sure to set the third parameter of the `AudioMultiSource()` to true so that the convolver and player are created after the last url has been loaded.  
+  
+**Example:**  
+```
+var source = new AudioMultiSource(['../path/to/reverb.mp3', '../path/to/melody.mp3'], function () {
+    
+  var reverb = new AudioConvolver({
+      source: source.buffer[0],
+      normalize: true
+  });
+  
+  var melody = new AudioPlayer({
+      source: source.buffer[1]
+  });
+  
+  melody.play({
+      destination: convolver
+  });
+    
+}, true);
+```  
+
 
 ## Full overview
 
@@ -161,7 +188,7 @@ Build a new source with an impulse response sound file and link the AudioPlayer 
 parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
 normalize        |*bool*     |No       |true: The convolver amplitude is leveled with the AudioPlayer. false: The convolver amplitude is not leveled with the AudioPlayer. Default = true
-source           |*string*   |Yes      |Connect the source to the created AudioSource.source
+source           |*string*   |Yes      |Connect the source to the created `AudioSource.buffer`
 destination      |*string*   |No       |Connect destination to effect, gain, etc. or leave blank for AudioContext().destination 
 - - - -
 
@@ -170,7 +197,7 @@ Creates an player object that connects to a source and plays a sound. Multiple p
 
 parameter        |type       |required |description
 -----------------|-----------|---------|-------------------------------------------------------------
-source           |*string*   |Yes      |Connect the source to the created AudioSource.source
+source           |*string*   |Yes      |Connect the source to the created `AudioSource.buffer`
 detune           |*value*    |No       |Set a value for detuning the source. Default is 0
 loop             |*bool*     |No       |Set loop true or false
 loopStart        |*integer*  |No       |If loop is true, start the loop from loopStart
